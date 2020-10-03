@@ -12,6 +12,7 @@ package arbolesrn;
 class Nodo {
     int llave; 
     int color; 
+    String nombre;
     Nodo izq; 
     Nodo der; 
     Nodo (int llave, int color) 
