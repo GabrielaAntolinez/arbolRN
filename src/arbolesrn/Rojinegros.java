@@ -84,7 +84,7 @@ class Rojinegros {
         return x; 
     }
 
-    Nodo insertar(int v){
+    Nodo insertar(int v,String name){
         Nodo gf,g,p,x;
         x = raiz; 
         p = x; 
@@ -114,6 +114,7 @@ class Rojinegros {
         while (x != z); 
         x = new Nodo(v ); // color sin asignar todavia 
         x.llave = v; 
+        x.nombre=name;
         x.izq = x.der = z; 
         if(v < p.llave) {
             p.izq = x; 
@@ -122,14 +123,14 @@ class Rojinegros {
         x = dividir (v, gf, g, p, x); 
         return x; 
     } 
-
+ 
     void inorden (Nodo p, int j, String s) { 
         
         //System.out.println("ll "+p.llave);
         if (p != z) { 
             inorden (p.izq, j+1,"i");
             if (p.color == ROJO) {
-                inordenData.add(p.llave + "-" + "R"+"-"+j+"-"+s);
+                inordenData.add(p.llave + "-" + "R"+"-"+j+"-"+s+"-"+p.nombre);
                 System.out.print( " " + p.llave + "-" + "R"+"-"+j+"-"+s);
                 if((j != 0 && num == 0) || j>num ){
                     num = j;
@@ -137,7 +138,7 @@ class Rojinegros {
             }
             else{ 
                 System.out.print( " " + p.llave + "-" + "N"+"-"+j+"-"+s); 
-                inordenData.add(p.llave + "-" + "N"+"-"+j+"-"+s);
+                inordenData.add(p.llave + "-" + "N"+"-"+j+"-"+s+"-"+p.nombre);
 
                 //num = (j != 0 && num == 0) ? j : 0;
                  if((j != 0 && num == 0)  || j>num ) {
@@ -149,7 +150,7 @@ class Rojinegros {
         }
         else{
             System.out.print(" "+"0-N-"+j+"-"+s);
-            inordenData.add("0-N-"+j+"-"+s);
+            inordenData.add("0-N-"+j+"-"+s+"-"+p.nombre);
         }
         //System.out.println("numero mayor "+num);
     } 
@@ -219,7 +220,7 @@ class Rojinegros {
                 int anterior = dir;
                 Nodo w,v;
                 g = p; 
-                p= g; 
+                p= q; 
                 if (anterior == 0) {
                     v = p.der; 
                 }
